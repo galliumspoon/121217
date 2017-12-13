@@ -7,8 +7,9 @@ $.get(url, function(moviesResult) {
   $(movies).each(function(index){
     $("#heads").append($("<div>").attr("id", this.imdbID))
     $(`#${this.imdbID}`).append($("<img>").attr("id", `poster${index}`).attr("src", this.Poster))
-    $(`#${this.imdbID}`).append($("<button>").attr("id", `button${index}`).html(this.Title)
-    .click(function (){
+    $(`#${this.imdbID}`).append($("<p>").attr("id", `p${index}`).html(this.Title))
+    $(`#${this.imdbID}`).click(function (){
+      window.location.href='#top'
       movie = movies[index]
       movieUrl = `http://www.omdbapi.com/?i=${movie.imdbID}&apikey=5215b3ba`
       $.get(movieUrl, function(movie) {
@@ -19,6 +20,5 @@ $.get(url, function(moviesResult) {
         .append($("<p>").html(`<b>Director:</b> ${movie.Director}`))
       })
     })
-  )
-})
+  })
 })
